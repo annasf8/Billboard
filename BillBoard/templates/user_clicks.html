@@ -1,0 +1,52 @@
+{% extends 'flatpages/default.html' %}
+
+<html>
+<head>
+<title>{% block title %}Отклики на мои объявления{% endblock title %}</title>
+</head>
+<body>
+{% block content %}
+    <h2 style="text-align: center;">Отклики на мои объявления</h2>
+    <form method="get">
+        <select name="post">
+            <option value="">Все объявления</option>
+            {% for bill in bills %}
+                <option value="{{ post.pk }}" {% if selected_bill_id == bill.pk %}selected{% endif %}>{{ bill.title }}</option>
+            {% endfor %}
+        </select>
+        <button type="submit">Фильтр</button>
+    </form>
+    <hr>
+        {% if replies %}
+        <table class="table table-bordered">
+            <tr>
+                <td>Объявление</td>
+                <td>Текст</td>
+                <td>Дата создания</td>
+                <td>Автор</td>
+                <td>Принять</td>
+                <td>Удалить</td>
+            </tr>
+            {% for click in clicks %}
+            <tr>
+                <td>{{ click.bill }}</td>
+                <td>{{ click.text_click}}</td>
+                <td>{{ click.time_create|date:'H:m d M Y' }}</td>
+                <td>{{ click.user }}</td>
+                <td>
+                    {% if click.accepted %}
+                        Отклик уже принят
+                    {% else %}
+                    <a href="{% url 'accept_click' click.id %}">Принять</a>
+                    {% endif %}
+                </td>
+                <td><a href="{% url 'click_delete' click.id %}">Удалить</a></td>
+            </tr>
+            {% endfor %}
+        </table>
+        {% else %}
+        <h2>У вас нет откликов</h2>
+        {% endif %}
+{% endblock content %}
+</body>
+</html>

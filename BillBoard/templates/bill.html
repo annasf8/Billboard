@@ -1,0 +1,40 @@
+{% extends 'flatpages/default.html' %}
+
+{% block title %}
+Bills
+{% endblock title %}
+
+{% block content %}
+   <h1>Объявление</h1>
+  <h2>{{ bill.title }}</h2>
+    <h2>{{ bill.text-bill }}</h2>
+    <h3>{{ bill.time_create|date:'H:m d M Y' }}</h3>
+    <br>
+    <h2>Отклики:</h2>
+    {% if comments %}
+       <table class="table table-bordered">
+           <tr>
+               <td>Текст</td>
+               <td>Дата создания</td>
+               <td>Автор</td>
+           </tr>
+           {% for r in comments %}
+           <tr>
+               <td>{{ r.text_click }}</a></td>
+               <td>{{ r.time_create|date:'H:m d M Y' }}</td>
+               <td>{{ r.user }}</td>
+           </tr>
+           {% endfor %}
+       </table>
+    {% else %}
+       <h2>Откликов нет!</h2>
+     {% endif %}
+    <br>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Отправить на проверку</button>
+    </form>
+{% endblock content %}
+
+
