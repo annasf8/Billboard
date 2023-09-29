@@ -30,10 +30,10 @@
                         </li>
                         {% if user.is_authenticated %}
                         <li class="nav-item">
-                            <a class="nav-link" href="{% url 'user_posts' %}">Мои объявления</a>
+                            <a class="nav-link" href="{% url 'user_bills' %}">Мои объявления</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="{% url 'user_replies' %}">Отклики</a>
+                            <a class="nav-link" href="{% url 'user_clicks' %}">Отклики</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="{% url 'account_logout' %}">Выход из аккаунта</a>

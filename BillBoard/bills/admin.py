@@ -9,14 +9,14 @@ admin.site.register(Click)
 
 
 # Register your models here.
+#
+# class BillAdminForm(forms.ModelForm):
+#     text_bill = forms.CharField(label='Описание', widget=CKEditorUploadingWidget())
+#
+#     class Meta:
+#         model = Bill
+#         fields = '__all__'
 
-class BillAdminForm(forms.ModelForm):
-    text_bill = forms.CharField(label='Описание', widget=CKEditorUploadingWidget())
 
-    class Meta:
-        model = Bill
-        fields = '__all__'
-
-
-class BillAdmin(admin.ModelAdmin):
-    form = BillAdminForm
+# class BillAdmin(admin.ModelAdmin):
+#     form = BillAdminForm

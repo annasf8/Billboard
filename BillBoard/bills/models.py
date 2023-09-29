@@ -1,7 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import User
 from django.urls import reverse
-from ckeditor_uploader.widgets import CKEditorUploadingWidget
+from ckeditor.fields import RichTextField
 # from .admin import BillAdminForm
 
 
@@ -33,7 +33,7 @@ class Bill(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     title = models.CharField(max_length=255)
     categories = models.CharField(max_length=2, choices=CATEGORIES, default='TK')
-    text_bill = CKEditorUploadingWidget(config_name='extends')
+    text_bill = RichTextField()
     time_create = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):

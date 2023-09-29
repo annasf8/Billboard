@@ -1,5 +1,6 @@
 from django import forms
 from .models import Bill, Click
+from ckeditor.fields import RichTextFormField
 
 
 class BillForm(forms.ModelForm):
@@ -14,8 +15,10 @@ class BillForm(forms.ModelForm):
 
     class Meta:
         model = Bill
-        fields = ['categories', 'title']
-
+        fields = ['categories', 'title', 'text_bill']
+        widgets = {
+            'text_bill': RichTextFormField(),
+        }
 
 class ClickForm(forms.ModelForm):
     class Meta:
